@@ -9,7 +9,7 @@ class PhotosLoader {
     // Load photos from JSON file
     async loadPhotos() {
         try {
-            const response = await fetch('/static/photos.json');
+            const response = await fetch('photos.json');
             if (!response.ok) {
                 throw new Error('Failed to load photos');
             }
