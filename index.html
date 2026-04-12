@@ -7,6 +7,16 @@
     <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- End Google Analytics -->
 </head>
 <body>
     <!-- Header Navigation -->
@@ -27,10 +37,11 @@
             </div>
             <nav class="nav" id="nav-menu">
                 <a href="#services">Services</a>
-                <a href="gallery.html">Gallery</a>
-                <a href="#packages">Packages</a>
+                <a href="gallery.html">Our Work</a>
+                <a href="#packages">Pricing</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
+                <button class="nav-book-btn" onclick="openBookingModal()">Book Now</button>
             </nav>
             <!-- Hamburger Menu -->
             <div class="hamburger" id="hamburger">
@@ -53,11 +64,35 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Turning Your Moments Into <span class="gold">Grand Celebrations</span></h1>
+            <h1 class="hero-title">India's Premier Luxury Event Experience Creators for <span class="gold">Bespoke Weddings & Brands</span></h1>
+            <p class="hero-subtitle">Curated experiences for elite clientele. 500+ signature events delivered with perfection.</p>
             <div class="hero-buttons">
-                <button class="btn btn-primary" onclick="openBookingModal()">
-                    <i class="far fa-calendar"></i> Book Now
+                <button class="btn btn-primary" onclick="openConsultationModal()">
+                    <i class="far fa-calendar"></i> Get a Free Consultation
                 </button>
+                <button class="btn btn-secondary" onclick="window.open('https://wa.me/919614028424')">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Us
+                </button>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="hero-trust-section">
+                <div class="trust-stats">
+                    <div class="stat-item">
+                        <span class="stat-icon">⭐</span>
+                        <span class="stat-text"><strong>4.9 Rating</strong></span>
+                    </div>
+                    <div class="stat-divider">|</div>
+                    <div class="stat-item">
+                        <span class="stat-text"><strong>500+ Events</strong> Delivered</span>
+                    </div>
+                </div>
+
+                <!-- Experience Badge -->
+                <div class="experience-badge">
+                    <span class="exp-icon">🏆</span>
+                    <span class="exp-text">8+ Years of Experience</span>
+                </div>
             </div>
         </div>
     </section>
@@ -86,9 +121,37 @@
                         <option value="Silver Package – Basic Planning">Silver Package – Basic Planning</option>
                         <option value="Gold Package – Full Planning + Decor">Gold Package – Full Planning + Decor</option>
                         <option value="Platinum Package – Luxury Experience">Platinum Package – Luxury Experience</option>
+                        <option value="Custom Package">Custom Package</option>
                     </select>
                     <textarea name="message" placeholder="Tell us about your event..." rows="5" required></textarea>
                     <button type="submit" class="btn btn-primary">Send Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Free Consultation Modal -->
+    <div id="consultationModal" class="modal consultation-modal">
+        <div class="modal-content consultation-content">
+            <span class="modal-close" onclick="closeConsultationModal()">×</span>
+            <div class="modal-form-wrapper">
+                <form class="consultation-form" id="consultationForm">
+                    <h2>Get Your Free Consultation</h2>
+                    <p class="form-subtitle">Let's discuss your event vision</p>
+                    <input type="text" name="user_name" placeholder="Your Full Name" required>
+                    <input type="email" name="user_email" placeholder="Your Email" required>
+                    <input type="tel" name="user_phone" placeholder="Phone Number" required>
+                    <select name="event_type" required>
+                        <option value="">What type of event?</option>
+                        <option value="Wedding">Wedding</option>
+                        <option value="Corporate Event">Corporate Event</option>
+                        <option value="Birthday Party">Birthday Party</option>
+                        <option value="Anniversary">Anniversary</option>
+                        <option value="Baby Shower">Baby Shower</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <textarea name="message" placeholder="Tell us about your event vision..." rows="4" required></textarea>
+                    <button type="submit" class="btn btn-consultation">Schedule Consultation</button>
                 </form>
             </div>
         </div>
@@ -98,73 +161,136 @@
     <section class="services" id="services">
         <div class="container">
             <div class="section-header">
-                <h2>Our <span class="gold">Premium</span> Services</h2>
-                <p>We specialize in creating unforgettable experiences for every occasion</p>
+                <h2><span class="gold">What We</span> Create</h2>
+                <p>From intimate celebrations to grand productions, we bring every vision to life</p>
             </div>
             <div class="services-grid">
                 <!-- Service 1 -->
                 <div class="service-card">
                     <div class="service-image" style="background-image: url('static/Images/COllection/wedding-couple.jpeg'); background-size: cover; background-position: center;"></div>
-                    <h3>Wedding Planner & Engagement</h3>
-                    <p>Transform your special day into an unforgettable grand celebration with our premium wedding planning services.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Wedding Planner & Engagement')">Enquire Now</button>
+                    <h3>💍 Luxury Wedding Experiences</h3>
+                    <p>From haldi to reception, we design and execute breathtaking weddings that reflect your story and leave a lasting impression on every guest.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20want%20to%20plan%20my%20wedding.%20Can%20you%20help%20with%20luxury%20wedding%20experiences%3F')">Plan Your Wedding</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 2 -->
                 <div class="service-card">
                     <div class="service-image service-image-2" style="background-image: url('static/Images/corporate%20event1.jpeg'); background-size: cover; background-position: center;"></div>
-                    <h3>Corporate Event Planning</h3>
-                    <p>Professional corporate event management for conferences, seminars, and business gatherings.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Corporate Event Planning')">Enquire Now</button>
+                    <h3>🏢 Corporate Event Experiences</h3>
+                    <p>Make your brand stand out with seamless, high-impact corporate events designed to impress clients, teams, and stakeholders.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20need%20a%20corporate%20event%20quote.%20Can%20you%20help%20with%20details%3F')">Get Corporate Quote</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 3 -->
                 <div class="service-card">
                     <div class="service-image service-image-3" style="background-image: url('static/Images/birthday%20party%20.png'); background-size: cover; background-position: center;"></div>
-                    <h3>Birthday Party Planning</h3>
-                    <p>Creative and memorable birthday celebrations with stunning decorations and event setup.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Birthday Party Planning')">Enquire Now</button>
+                    <h3>🎉 Private Celebrations & Parties</h3>
+                    <p>From birthdays to anniversaries, we turn your special moments into unforgettable celebrations filled with style, energy, and joy.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20want%20to%20plan%20a%20private%20celebration%20party.%20Can%20we%20discuss%3F')">Start Planning</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 4 -->
                 <div class="service-card">
                     <div class="service-image service-image-4" style="background-image: url('static/Images/theam%20based%20party.png'); background-size: cover; background-position: center;"></div>
-                    <h3>Theme-Based Party Planning</h3>
-                    <p>Unique themed events with customized decorations that bring your vision to life.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Theme-Based Party Planning')">Enquire Now</button>
+                    <h3>🎨 Theme-Based Event Design</h3>
+                    <p>We create electrifying live experiences with professional production, artist coordination, and crowd-engaging performances.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20want%20to%20book%20a%20theme-based%20show.%20Can%20you%20show%20me%20designs%3F')">Book Your Show</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 5 -->
                 <div class="service-card">
                     <div class="service-image service-image-5" style="background-image: url('static/Images/kids%20birthday%20party%20.png'); background-size: cover; background-position: center;"></div>
-                    <h3>Kids Birthday Party</h3>
-                    <p>Exciting and fun-filled children's parties with age-appropriate entertainment and decor.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Kids Birthday Party')">Enquire Now</button>
+                    <h3>🧒 Kids Birthday Experiences</h3>
+                    <p>Bring star power to your event with access to top artists, performers, and celebrity appearances managed end-to-end.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20want%20to%20plan%20a%20kids%20birthday%20party.%20Can%20we%20discuss%3F')">Book an Artist</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 6 -->
                 <div class="service-card">
                     <div class="service-image service-image-6" style="background-image: url('static/Images/baby%20shower.png'); background-size: cover; background-position: center;"></div>
-                    <h3>Baby Shower Planning</h3>
-                    <p>Elegant baby shower celebrations with beautiful decorations and thoughtful details.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Baby Shower Planning')">Enquire Now</button>
+                    <h3>👶 Elegant Baby Shower Celebrations</h3>
+                    <p>From stage design to lighting and sound, we handle every technical detail to deliver a flawless and visually stunning event.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20want%20to%20plan%20a%20baby%20shower.%20Can%20you%20help%3F')">Explore Production</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 7 -->
                 <div class="service-card">
                     <div class="service-image service-image-7" style="background-image: url('static/Images/anniversary%20.png'); background-size: cover; background-position: center;"></div>
-                    <h3>Anniversary Party Planning</h3>
-                    <p>Romantic and sophisticated anniversary celebrations to honor your special milestones.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Anniversary Party Planning')">Enquire Now</button>
+                    <h3>❤️ Anniversary Celebrations</h3>
+                    <p>From stage design to lighting and sound, we handle every technical detail to deliver a flawless and visually stunning event.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20want%20to%20plan%20an%20anniversary%20celebration.%20Can%20you%20help%3F')">Explore Production</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 8 -->
                 <div class="service-card">
                     <div class="service-image service-image-8" style="background-image: url('static/Images/school%20event%20management%20.png'); background-size: cover; background-position: center;"></div>
-                    <h3>School Event Management</h3>
-                    <p>Complete school function planning from annual days to sports events and cultural programs.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('School Event Management')">Enquire Now</button>
+                    <h3>🎓 School & Institutional Events</h3>
+                    <p>From stage design to lighting and sound, we handle every technical detail to deliver a flawless and visually stunning event.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20need%20help%20with%20a%20school%20event.%20Can%20we%20discuss%3F')">Explore Production</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
                 <!-- Service 9 -->
                 <div class="service-card">
                     <div class="service-image service-image-9" style="background-image: url('static/Images/retirement%20.png'); background-size: cover; background-position: center;"></div>
-                    <h3>Retirement Party Planning</h3>
-                    <p>Dignified and memorable retirement celebrations to honor professional achievements.</p>
-                    <button class="btn-outline" onclick="openWhatsApp('Retirement Party Planning')">Enquire Now</button>
+                    <h3>🎖️ Retirement & Milestone Celebrations</h3>
+                    <p>From stage design to lighting and sound, we handle every technical detail to deliver a flawless and visually stunning event.</p>
+                    <button class="btn-outline" onclick="window.open('https://wa.me/919614028424?text=Hi%20Royal%20Desi%20Crew%2C%20I%20want%20to%20plan%20a%20retirement%20celebration.%20Can%20you%20help%3F')">Explore Production</button>
+                    <div class="service-trust-line">500+ Events Delivered | Trusted Since 2017 | Customized Packages Available</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose-us" id="why-choose">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose <span class="gold">Royal Desi Crew</span>?</h2>
+                <p>We're not just an event company. We're your vision's biggest champion.</p>
+            </div>
+            <div class="why-choose-grid">
+                <!-- Reason 1 -->
+                <div class="why-card">
+                    <div class="why-icon">🎯</div>
+                    <h3>Obsessive Attention to Detail</h3>
+                    <p>Every element, from lighting to catering, is curated to create a cohesive, unforgettable experience.</p>
+                </div>
+                <!-- Reason 2 -->
+                <div class="why-card">
+                    <div class="why-icon">⭐</div>
+                    <h3>Proven Track Record</h3>
+                    <p>500+ successfully executed events with a 4.9★ rating. Your event is in elite hands.</p>
+                </div>
+                <!-- Reason 3 -->
+                <div class="why-card">
+                    <div class="why-icon">🤝</div>
+                    <h3>Dedicated Event Architect</h3>
+                    <p>You get a personal event manager who understands your vision and brings it to life seamlessly.</p>
+                </div>
+                <!-- Reason 4 -->
+                <div class="why-card">
+                    <div class="why-icon">✨</div>
+                    <h3>Luxury Execution, Smart Pricing</h3>
+                    <p>Premium quality without premium costs. Customized packages fit your vision and budget.</p>
+                </div>
+                <!-- Reason 5 -->
+                <div class="why-card">
+                    <div class="why-icon">🚀</div>
+                    <h3>End-to-End Management</h3>
+                    <p>From concept to execution to post-event follow-up. We handle everything so you can celebrate.</p>
+                </div>
+                <!-- Reason 6 -->
+                <div class="why-card">
+                    <div class="why-icon">💎</div>
+                    <h3>Signature Style</h3>
+                    <p>Your event will have our signature luxury touch. It will be unmistakably exceptional.</p>
+                </div>
+            </div>
+            <div class="why-cta">
+                <p>Ready to experience the Royal Desi Crew difference?</p>
+                <button class="btn btn-primary" onclick="openConsultationModal()">
+                    <i class="far fa-calendar"></i> Get a Free Consultation
+                </button>
             </div>
         </div>
     </section>
@@ -173,8 +299,8 @@
     <section class="gallery" id="gallery">
         <div class="container">
             <div class="section-header">
-                <h2>Our <span class="gold">Event</span> Gallery</h2>
-                <p>A glimpse into the magical moments we've created</p>
+                <h2>Our <span class="gold">Signature Moments</span></h2>
+                <p>Curated luxury experiences captured in time</p>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item large" style="background-image: url('static/Images/COllection/wedding-couple.jpeg'); background-size: cover; background-position: center;"></div>
@@ -266,8 +392,8 @@
             <div class="about-content">
                 <div class="about-text">
                     <h2>About <span class="gold">Royal Desi Crew</span></h2>
-                    <p>Royal Desi Crew is a premium event management and entertainment company specializing in creating grand, stylish, and memorable celebrations. With years of experience and a passion for perfection, we transform your vision into reality.</p>
-                    <p>From intimate gatherings to large-scale events, our team of creative professionals ensures every detail is meticulously planned and executed, delivering experiences that exceed expectations.</p>
+                    <p>Royal Desi Crew is India's premier luxury event experience brand, specializing in curated, bespoke celebrations that transcend ordinary gatherings. We are elite event architects who transform your vision into signature moments of pure elegance.</p>
+                    <p>Our signature approach combines meticulous planning, luxury curation, and artistic execution. From intimate bespoke gatherings to grand celebrations, our team of elite professionals ensures every detail reflects our commitment to luxury and excellence.</p>
                     <div class="about-stats">
                         <div class="stat">
                             <i class="fas fa-trophy"></i>
@@ -301,7 +427,7 @@
     <section class="testimonials">
         <div class="container">
             <div class="section-header">
-                <h2>What Our <span class="gold">Clients Say</span></h2>
+                <h2>Trusted by Elite <span class="gold">Clientele</span></h2>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
@@ -429,7 +555,7 @@
         <div class="cute-robot">
             <div class="robot-message">
                 <div class="message-box">
-                    <p class="message-text">Need Help?</p>
+                    <p class="message-text">Chat with Event Expert</p>
                 </div>
             </div>
             

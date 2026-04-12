@@ -1,3 +1,14 @@
+// ===== EmailJS Configuration =====
+// Initialize EmailJS
+emailjs.init("ZbITBo3U3lGnGZVXi"); // Replace with your EmailJS Public Key
+
+// Your EmailJS credentials (replace these)
+const EMAILJS_SERVICE_ID = "service_b8hukgl"; // e.g., "service_abc123"
+const EMAILJS_BOOKING_TEMPLATE = "template_c5e065c"; // Template for booking form
+const EMAILJS_CONSULTATION_TEMPLATE = "template_hx4pwb6"; // Template for consultation
+const ADMIN_EMAIL = "royaldesicrew@gmail.com"; // Your admin email
+// ===== End EmailJS Configuration =====
+
 // Background Image Carousel for Hero Section
 const slides = [
     '/static/Images/Background.png',
@@ -259,7 +270,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Handle modal form submission
+// Handle booking form submission
 document.addEventListener('DOMContentLoaded', function() {
     const modalForm = document.getElementById('modalContactForm');
     if (modalForm) {
@@ -272,10 +283,17 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
+            // Add admin email as hidden field for template
+            const adminEmailInput = document.createElement('input');
+            adminEmailInput.type = 'hidden';
+            adminEmailInput.name = 'admin_email';
+            adminEmailInput.value = ADMIN_EMAIL;
+            this.appendChild(adminEmailInput);
+            
             // Send email via EmailJS
             emailjs.sendForm(
-                'YOUR_SERVICE_ID_HERE',      // Replace with your EmailJS service ID
-                'YOUR_TEMPLATE_ID_HERE',     // Replace with your EmailJS template ID
+                EMAILJS_SERVICE_ID,              // Use configuration variable
+                EMAILJS_BOOKING_TEMPLATE,        // Use configuration variable
                 this
             ).then(
                 function(response) {
@@ -288,7 +306,90 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 function(error) {
                     console.log('FAILED...', error);
-                    alert('Oops! Something went wrong. Please try again or contact us directly.');
+                    alert('Oops! Something went wrong. Please try again or contact us directly at +91 9614028424.');
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            );
+        });
+    }
+});
+
+// ===== Consultation Modal Functions =====
+
+function openConsultationModal() {
+    const consultationModal = document.getElementById('consultationModal');
+    if (consultationModal) {
+        consultationModal.style.display = 'flex';
+        consultationModal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling
+    }
+}
+
+function closeConsultationModal() {
+    const consultationModal = document.getElementById('consultationModal');
+    if (consultationModal) {
+        consultationModal.classList.remove('show');
+        consultationModal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Allow scrolling
+    }
+}
+
+// Close consultation modal when clicking outside
+window.addEventListener('click', function(event) {
+    const consultationModal = document.getElementById('consultationModal');
+    if (event.target === consultationModal) {
+        closeConsultationModal();
+    }
+});
+
+// Close consultation modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const consultationModal = document.getElementById('consultationModal');
+        if (consultationModal && consultationModal.style.display === 'flex') {
+            closeConsultationModal();
+        }
+    }
+});
+
+// Handle consultation form submission
+document.addEventListener('DOMContentLoaded', function() {
+    const consultationForm = document.getElementById('consultationForm');
+    if (consultationForm) {
+        consultationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Scheduling...';
+            submitBtn.disabled = true;
+            
+            // Add admin email as hidden field for template
+            const adminEmailInput = document.createElement('input');
+            adminEmailInput.type = 'hidden';
+            adminEmailInput.name = 'admin_email';
+            adminEmailInput.value = ADMIN_EMAIL;
+            this.appendChild(adminEmailInput);
+            
+            // Send email via EmailJS
+            emailjs.sendForm(
+                EMAILJS_SERVICE_ID,                  // Use configuration variable
+                EMAILJS_CONSULTATION_TEMPLATE,       // Use configuration variable
+                this
+            ).then(
+                function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    alert('Thank you! We\'ll schedule your free consultation shortly.');
+                    consultationForm.reset();
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    closeConsultationModal();
+                },
+                function(error) {
+                    console.log('FAILED...', error);
+                    alert('Oops! Something went wrong. Please contact us directly at +91 9614028424.');
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                 }
