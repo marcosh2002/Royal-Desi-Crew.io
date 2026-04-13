@@ -22,12 +22,16 @@ if (!defined('ABSPATH')) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
     
-    <!-- ===== INLINE THEME CSS ===== -->
+    <!-- ===== INLINE COMPLETE THEME CSS ===== -->
     <style><?php
-        // Load and output main.css inline to bypass any server redirect issues
-        $css_file = get_template_directory() . '/assets/css/main.css';
+        // Output ALL CSS inline to completely bypass server file redirect issues
+        $css_file = get_template_directory() . '/style.css';
         if (file_exists($css_file)) {
-            echo file_get_contents($css_file);
+            // Read complete CSS file and output it
+            $css_content = file_get_contents($css_file);
+            // Remove WordPress theme header comments to prevent CSS parsing issues
+            $css_content = preg_replace('/^\/\*[\s\S]*?\*\//m', '', $css_content, 1);
+            echo $css_content;
         }
     ?></style>
     <!-- ===== END INLINE CSS ===== -->
