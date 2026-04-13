@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/main.css?v=<?php echo time(); ?>" />
+    <link rel="stylesheet" href="https://royaldesicrew.com/wp-content/themes/royal-desi-crew-theme/assets/css/main.css?v=<?php echo time(); ?>" />
     <!-- ===== END EXPLICIT CSS ===== -->
     
     <?php wp_head(); ?>
