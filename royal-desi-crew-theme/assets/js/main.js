@@ -9,11 +9,11 @@ const EMAILJS_PUBLIC_KEY = "ZbITBo3U3lGnGZVXi";
 
 // Background Image Carousel for Hero Section
 const slides = [
-    'static/Images/Background.png',
-    'static/Images/background image 2.jpg',
-    'static/Images/background 3.jpg',
-    'static/Images/corporate event1.jpeg',
-    'static/Images/Wedding.png'
+    '/wp-content/themes/royal-desi-crew-theme/assets/images/Background.png',
+    '/wp-content/themes/royal-desi-crew-theme/assets/images/background image 2.jpg',
+    '/wp-content/themes/royal-desi-crew-theme/assets/images/background 3.jpg',
+    '/wp-content/themes/royal-desi-crew-theme/assets/images/corporate event1.jpeg',
+    '/wp-content/themes/royal-desi-crew-theme/assets/images/Wedding.png'
 ];
 
 let slideIndex = 0;
@@ -132,24 +132,24 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Scroll animation for elements
-const observerOptions = {
+const scrollAnimationOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const scrollObserver = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-            observer.unobserve(entry.target);
+            scrollObserver.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, scrollAnimationOptions);
 
 // Observe service cards, gallery items, testimonial cards
 document.querySelectorAll('.service-card, .gallery-item, .testimonial-card, .package-card, .info-item').forEach(el => {
     el.style.animation = 'none';
-    observer.observe(el);
+    scrollObserver.observe(el);
 });
 
 // Header scroll effect

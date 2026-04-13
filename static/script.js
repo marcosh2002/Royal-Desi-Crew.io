@@ -132,24 +132,24 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // Scroll animation for elements
-const observerOptions = {
+const scrollAnimationOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -100px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const scrollObserver = new IntersectionObserver(function(entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-            observer.unobserve(entry.target);
+            scrollObserver.unobserve(entry.target);
         }
     });
-}, observerOptions);
+}, scrollAnimationOptions);
 
 // Observe service cards, gallery items, testimonial cards
 document.querySelectorAll('.service-card, .gallery-item, .testimonial-card, .package-card, .info-item').forEach(el => {
     el.style.animation = 'none';
-    observer.observe(el);
+    scrollObserver.observe(el);
 });
 
 // Header scroll effect

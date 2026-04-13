@@ -9,13 +9,23 @@ class PhotosLoader {
     // Load photos from JSON file
     async loadPhotos() {
         try {
-            const response = await fetch('static/photos.json');
+            // Try to get the correct path from the script's location
+            const themePath = document.currentScript ? 
+                document.currentScript.src.replace('photos-loader.js', '') : 
+                '/wp-content/themes/royal-desi-crew-theme/assets/js/';
+            
+            const jsonPath = themePath + 'photos.json';
+            const response = await fetch(jsonPath);
+            
             if (!response.ok) {
+                console.error('Failed to load photos from:', jsonPath);
                 throw new Error('Failed to load photos');
             }
+            
             const data = await response.json();
-            this.photos = data.photos;
+            this.photos = data.photos || [];
             this.filteredPhotos = this.photos;
+            console.log('Photos loaded:', this.photos.length);
             return this.photos;
         } catch (error) {
             console.error('Error loading photos:', error);
