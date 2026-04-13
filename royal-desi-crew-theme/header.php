@@ -16,13 +16,21 @@ if (!defined('ABSPATH')) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14' font-size='14' font-weight='bold' fill='%23d4af37'>R</text></svg>" />
     
-    <!-- ===== EXPLICIT CSS LOADING ===== -->
+    <!-- ===== EXTERNAL CSS ===== -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Montserrat:wght@300;400;500;600&family=Prata&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://royaldesicrew.com/wp-content/themes/royal-desi-crew-theme/assets/css/main.css?v=<?php echo time(); ?>" />
-    <!-- ===== END EXPLICIT CSS ===== -->
+    
+    <!-- ===== INLINE THEME CSS ===== -->
+    <style><?php
+        // Load and output main.css inline to bypass any server redirect issues
+        $css_file = get_template_directory() . '/assets/css/main.css';
+        if (file_exists($css_file)) {
+            echo file_get_contents($css_file);
+        }
+    ?></style>
+    <!-- ===== END INLINE CSS ===== -->
     
     <?php wp_head(); ?>
     
