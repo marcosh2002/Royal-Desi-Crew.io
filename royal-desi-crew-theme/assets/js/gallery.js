@@ -125,25 +125,42 @@ function handleFilterClick(event) {
 
 // Setup all event listeners
 function setupEventListeners() {
-    // Lightbox controls
-    document.getElementById('closeLightbox').addEventListener('click', closeLightbox);
-    document.getElementById('nextPhoto').addEventListener('click', nextPhoto);
-    document.getElementById('prevPhoto').addEventListener('click', previousPhoto);
+    // Lightbox controls - only if elements exist
+    const closeLightboxBtn = document.getElementById('closeLightbox');
+    const nextPhotoBtn = document.getElementById('nextPhoto');
+    const prevPhotoBtn = document.getElementById('prevPhoto');
+    const lightbox = document.getElementById('lightbox');
+    const filterButtons = document.querySelector('.filter-buttons');
     
-    // Close on background click
-    document.getElementById('lightbox').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeLightbox();
-        }
-    });
+    // Only attach listeners if elements exist
+    if (closeLightboxBtn) {
+        closeLightboxBtn.addEventListener('click', closeLightbox);
+    }
     
-    // Filter buttons
-    document.querySelector('.filter-buttons').addEventListener('click', handleFilterClick);
+    if (nextPhotoBtn) {
+        nextPhotoBtn.addEventListener('click', nextPhoto);
+    }
     
-    // Keyboard navigation
+    if (prevPhotoBtn) {
+        prevPhotoBtn.addEventListener('click', previousPhoto);
+    }
+    
+    if (lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    }
+    
+    if (filterButtons) {
+        filterButtons.addEventListener('click', handleFilterClick);
+    }
+    
+    // Keyboard navigation (always safe to attach)
     document.addEventListener('keydown', function(e) {
-        const lightbox = document.getElementById('lightbox');
-        if (!lightbox.classList.contains('active')) return;
+        const lb = document.getElementById('lightbox');
+        if (!lb || !lb.classList.contains('active')) return;
         
         if (e.key === 'ArrowLeft') previousPhoto();
         if (e.key === 'ArrowRight') nextPhoto();
