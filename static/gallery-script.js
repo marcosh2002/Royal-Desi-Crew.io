@@ -1,39 +1,16 @@
 // Gallery Script - Handle gallery interactions and rendering
-
 let currentPhotoId = null;
-
-// Smooth scroll animation observer options
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
 
 // Initialize gallery on page load
 document.addEventListener('DOMContentLoaded', async function() {
     // Load photos
-    await photosLoader.loadPhotos();
-    
-    // Render initial gallery
-    renderGallery();
+    if (window.photosLoader) {
+        await photosLoader.loadPhotos();
+        renderGallery();
+    }
     
     // Setup event listeners
     setupEventListeners();
-    
-    // Setup intersection observer for gallery items
-    setTimeout(() => {
-        document.querySelectorAll('.gallery-item').forEach(el => {
-            observer.observe(el);
-        });
-    }, 100);
     
     // Hamburger Menu Toggle
     const hamburger = document.getElementById('hamburger');
@@ -45,7 +22,6 @@ document.addEventListener('DOMContentLoaded', async function() {
             navMenu.classList.toggle('active');
         });
         
-        // Close menu when a link is clicked
         navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
