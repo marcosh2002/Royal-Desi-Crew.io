@@ -32,15 +32,47 @@ add_action('wp_enqueue_scripts', function() {
     wp_enqueue_script('theme-js', $url . '/assets/js/main.js', [], $ver, true);
 });
 
-// CRITICAL: Prevent WordPress from loading any stylesheets
-// All CSS is inline in header.php to avoid MIME type issues
-add_action('wp_print_styles', function() {
+/**
+ * NUCLEAR FIX: Completely disable all stylesheet enqueuing
+ * Force inline CSS only, prevent any stylesheet loading
+ */
+
+// Remove WordPress default styles
+add_action('wp_enqueue_scripts', function() {
+    // Remove emoji styles
+    remove_action('wp_head', 'print_emoji_dcnames_scripts');
+    remove_action('wp_head', 'print_emoji_styles');
+    
+    // Remove block library CSS
+    wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('wp-block-library-theme');
+    
+    // Dequeue global styles
+    wp_dequeue_style('global-styles');
+    
+    // Clear all enqueued styles
     global $wp_styles;
-    if (is_object($wp_styles)) {
-        // Remove all registered styles to prevent external CSS loading
+    if ($wp_styles instanceof WP_Styles) {
         $wp_styles->queue = [];
     }
 }, 100);
+
+// Prevent any stylesheet from being printed
+add_action('wp_print_styles', function() {
+    global $wp_styles;
+    if ($wp_styles instanceof WP_Styles) {
+        $wp_styles->queue = [];
+    }
+}, 1);
+
+// Block stylesheet loading via filter
+add_filter('style_loader_src', function($src, $handle) {
+    // Return false to prevent loading
+    return false;
+}, 10, 2);
+
+// Remove emoji script
+add_filter('emoji_svg_url', '__return_false');
 
 // Add proper script type attributes
 add_filter('script_loader_tag', function($tag, $handle) {
